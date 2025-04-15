@@ -1,0 +1,48 @@
+.PostScroll{
+    height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 0px 5px 0px rgba(190, 190, 190, 0.5),0px 0px 5px 0px rgba(47, 47, 103, 0.5);
+    margin: 20px 0px;
+    padding-bottom: 5px;
+}
+.headerPostScroll{
+    height: 60px;
+    width: 100%;
+}
+.ImagePostScroll{
+    height: 100%;   
+}
+.imagePost{
+    height: 90%;
+}
+.order{
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px;
+}
+.order span a{
+    margin: 0px 4px;
+}
+.fouterPostScroll div{
+    display: flex;
+    /* border: 1px solid #ff0; */
+}
+.fouterPostScroll div input{
+    width: 100%;
+    border: none;
+    outline: none;
+    color: white;
+    overflow: scroll;
+    padding-left: 5px;
+    scrollbar-width: none;
+    background-color: transparent;
+    transition: all .5s ease-in-out;
+}
+.fouterPostScroll div:hover input{
+    box-shadow: 0px 0px 5px 0px rgba(190, 190, 190, 0.5),0px 0px 5px 0px rgba(47, 47, 103, 0.5);
+    border-radius: 5px;
+}

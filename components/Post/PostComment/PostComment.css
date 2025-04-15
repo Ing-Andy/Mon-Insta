@@ -1,0 +1,61 @@
+.PostComment{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 4;
+    z-index: 100px;
+    margin-left: -40px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.PostCommentContainer{
+    width: 500px;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    
+    box-shadow: 0px 0px 5px 0px rgba(190, 190, 190, 0.5),0px 0px 5px 0px rgba(47, 47, 103, 0.5);
+    background-color: black;
+}
+.PostCommentImage{
+    height: 100%;
+    width: 100%;
+}
+.PostCommentComment{
+    width: 100%;
+}
+.PostCommentCommentProfil{
+    height: 60px;
+    margin-bottom: 5px;
+    /* padding: 5px; */
+}
+.PostCommentCommentListe{
+    list-style: none;
+    height: 270px;
+    margin: 5px 0px;
+    /* border: 1px solid #00f; */
+    overflow: scroll;
+    scrollbar-width: none;
+}
+.PostCommentCommentListe li{
+    margin: 5px 1px;
+}
+.PostCommentCommentYour div{
+    /* border: 1px solid #0ff; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.PostCommentCommentYour input{
+    height: 30px;
+    color: white;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+.PostCommentCommentYour div:hover input{
+    box-shadow: 0px 0px 15px 0px rgba(190, 190, 190, 0.5),0px 0px 15px 0px rgba(47, 47, 103, 0.5);
+    border-radius: 5px;
+}

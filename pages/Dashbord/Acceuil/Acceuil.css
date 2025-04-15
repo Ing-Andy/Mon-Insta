@@ -1,0 +1,46 @@
+.Acceuil{
+    color: white;
+    display: flex;
+    flex-grow: 1;
+}
+.mainAceuil{
+    width: 75%;
+    flex-grow: 1;
+    height: 100vh;
+    display: flex;
+    overflow: scroll;
+    align-items: center;
+    scrollbar-width: none;
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 20px;
+}
+.recentPost{
+    margin: 20px 5px;
+}
+/* .MainAceuil .section1{
+    width: 80%;
+    height: 100vh;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #0ff;
+} */
+.AsideAceuil{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* flex-grow: 1; */
+    /* position: relative; */
+}
+.listeStatut{
+    display: flex;
+    list-style: none;
+    width: 500px;
+    height: 200px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
