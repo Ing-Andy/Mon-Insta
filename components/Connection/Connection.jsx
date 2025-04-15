@@ -21,25 +21,26 @@ export default function Connection({inscription}) {
     const handleChange = (e) => {
        setFormData({ ...formData, [e.target.name]: e.target.value })
     }
-    // const connection = async (e) => {
-    //     e.preventDefault()
-    //     try{
-    //         const userCredential = await signInWithEmailAndPassword( auth , mail, password);
-    //         const user = userCredential.user;
-    //         // console.log('Connection reussite car andy est le meileur! votre nom est ,M.',userCredential.displayName);
-    //         navigate('/Acceuil')
-    //     }
-    //     catch(error){
-    //         console.error("andy n'est pas si fort",error.message)
-    //     }
-    // }
+    const connection = async (e) => {
+        e.preventDefault()
+        try{
+            // const userCredential = await signInWithEmailAndPassword( auth , mail, password);
+            // const user = userCredential.user;
+            // console.log('Connection reussite car andy est le meileur! votre nom est ,M.',userCredential.displayName);
+            await login(mail,password)
+            navigate('/acceuil')
+        }
+        catch(error){
+            console.error("andy n'est pas si fort",error.message)
+        }
+    }
     
   return (
     <div className='connection'>
         <div className='connection__header'>
             <h1>Connection</h1>
         </div>
-        <form className='connection__body' onSubmit={login}>
+        <form className='connection__body' onSubmit={connection}>
             <div className="div__input">
                 <Input type="text" placeholder="mail" id='mail' value={mail} onChange={handleChange}/>
                 <Input type="password" placeholder="password" id='password' value={password} onChange={handleChange}/>

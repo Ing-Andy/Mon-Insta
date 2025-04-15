@@ -29,45 +29,45 @@ export default function Inscription({connection}) {
     }
 
 
-    // const Inscription = async (e) => {
-    //     e.preventDefault();
+    const Inscription = async (e) => {
+        e.preventDefault();
 
-    //     try{
+        try{
+            // const Newuser = await createUserWithEmailAndPassword(auth, Email, Password)
 
-    //         const Newuser = await createUserWithEmailAndPassword(auth, Email, Password)
-
-    //         if(Newuser){
-    //             const userData = {
-    //                 uid:Newuser.user.uid,
-    //                 name:Name,
-    //                 email:Email,
-    //                 surname:Surname,
-    //                 tel:Tel,
-    //                 like:[],
-    //                 Comment:[],
-    //                 post:[],
-    //                 photoUrl:'',
-    //                 createAt: Date.now(),
-    //                 updateAt: Date.now(),
-    //             }
+            // if(Newuser){
+            //     const userData = {
+            //         uid:Newuser.user.uid,
+            //         name:Name,
+            //         email:Email,
+            //         surname:Surname,
+            //         tel:Tel,
+            //         like:[],
+            //         Comment:[],
+            //         post:[],
+            //         photoUrl:'',
+            //         createAt: Date.now(),
+            //         updateAt: Date.now(),
+            //     }
                 
-    //             const userRef = doc(db, "user", Newuser.user.uid)
-    //             await setDoc(userRef, userData)
-    //             console.log("andy est le meilleur car il a pue vous creez un compte au nom de ",userData.name)
-    //             navigate('/acceuil')
-    //         }
-    //     }
-    //     catch(error){
-    //         console.error("andy n'est pas si fort car:", error.message);
-    //     }
-    // }
+            //     const userRef = doc(db, "user", Newuser.user.uid)
+            //     await setDoc(userRef, userData)
+            //     console.log("andy est le meilleur car il a pue vous creez un compte au nom de ",userData.name)
+            // }
+            await register(Email,Password,Name,Surname,Tel)
+            navigate('/acceuil')
+        }
+        catch(error){
+            console.error("andy n'est pas si fort car:", error.message);
+        }
+    }
 
   return (
     <div className='inscription'>
         <div className='inscription__header'>
             <h1>Inscription</h1>
         </div>
-        <form className='inscription__body' onSubmit={register}>
+        <form className='inscription__body' onSubmit={Inscription}>
             <div className="div__input">
                 <Input type="text" placeholder="name" id='Name' value={Name} onChange={handleChange}                />
                 <Input type="text" placeholder="surname" id='Surname' value={Surname} onChange={handleChange}       />

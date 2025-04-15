@@ -1,6 +1,12 @@
-import { Outlet } from "react-router-dom";
-import Log from "../pages/log/Log";
+import { useAuth } from '../context/AuthContext'
+import { Navigate, Outlet } from 'react-router-dom'
 
-export default function Protected({user}){
-    return user ? <Outlet /> : <Log />
+export default function PrivateRoute() {
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return <div>Chargement...</div> // Ou un spinner de chargement
+  }
+
+  return user ? <Outlet /> : <Navigate to="/login" />
 }
