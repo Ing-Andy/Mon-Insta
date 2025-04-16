@@ -31,6 +31,8 @@ export const AuthProvider = ({ children }) => {
             surname:surname,
             tel:tel,
             email:email,
+            like:[],
+            comment:[],
             createAt: Date.now(),
             updateAt: Date.now(),
         })
