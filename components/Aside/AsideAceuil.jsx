@@ -7,18 +7,18 @@ export default function AsideAceuil() {
   return (
     <div className='AsideAceuilContainer'>
         <header className="headerAsideAceuil">
-            <Profile />
+          <Profile lien="/profile" />
         </header>
         <div className="params">
           <p>suggetion d'ami</p>
           <hr width='80%'/>
         </div>
         <section className="sugesstion">
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
-          <Profile />
+          <Profile lien="" />
+          <Profile lien="" />
+          <Profile lien="" />
+          <Profile lien="" />
+          <Profile lien="" />
         </section>
         <footer className="footerAsideAceuil">
           <p>

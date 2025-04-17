@@ -5,6 +5,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import Acceuil from '../pages/Dashbord/Acceuil/Acceuil'
 import PostComment from '../components/Post/PostComment/PostComment'
 import Main from '../pages/main/Main'
+import UserProfile from '../pages/Profile/UserProfil'
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Route path='/' element={<Main />}>
           <Route path='acceuil' element={<Acceuil />} />
           <Route path='comment' element={<PostComment />} />
+        <Route path='profile' element={<UserProfile/>} />
         </Route>
       </Routes>
     </BrowserRouter>

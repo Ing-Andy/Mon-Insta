@@ -1,8 +1,9 @@
 import React from 'react'
 import './Profile.css'
 import { Heart, List } from 'lucide-react'
+import { NavLink } from 'react-router-dom'
 
-export default function Profile() {
+export default function Profile({lien}) {
   return (
     <div className='Profile'>
         <div className="imageProfile">
@@ -11,7 +12,7 @@ export default function Profile() {
             </div>
         </div>
         <div className="NameProfile">
-            <h3>nom eds</h3>
+            <h3><NavLink to={lien}>nom eds</NavLink></h3>
             <p>je vais faire quoi ici</p>
         </div>
         <div className="MenuProfile">
