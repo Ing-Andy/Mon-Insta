@@ -33,32 +33,12 @@ export default function Inscription({connection}) {
         e.preventDefault();
 
         try{
-            // const Newuser = await createUserWithEmailAndPassword(auth, Email, Password)
-
-            // if(Newuser){
-            //     const userData = {
-            //         uid:Newuser.user.uid,
-            //         name:Name,
-            //         email:Email,
-            //         surname:Surname,
-            //         tel:Tel,
-            //         like:[],
-            //         Comment:[],
-            //         post:[],
-            //         photoUrl:'',
-            //         createAt: Date.now(),
-            //         updateAt: Date.now(),
-            //     }
-                
-            //     const userRef = doc(db, "user", Newuser.user.uid)
-            //     await setDoc(userRef, userData)
-            //     console.log("andy est le meilleur car il a pue vous creez un compte au nom de ",userData.name)
-            // }
             await register(Email,Password,Name,Surname,Tel)
             navigate('/acceuil')
         }
         catch(error){
             console.error("andy n'est pas si fort car:", error.message);
+            navigate('/')
         }
     }
 

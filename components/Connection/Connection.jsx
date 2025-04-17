@@ -16,22 +16,21 @@ export default function Connection({inscription}) {
     const [formData, setFormData] = useState({
         mail: '',
         password: '',
-    })
-    const {mail, password} = formData
+    });
+    const {mail, password} = formData;
     const handleChange = (e) => {
-       setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
+       setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
     const connection = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try{
-            // const userCredential = await signInWithEmailAndPassword( auth , mail, password);
-            // const user = userCredential.user;
-            // console.log('Connection reussite car andy est le meileur! votre nom est ,M.',userCredential.displayName);
-            await login(mail,password)
-            navigate('/acceuil')
+            await login(mail,password);
+            navigate('/acceuil');
         }
         catch(error){
-            console.error("andy n'est pas si fort",error.message)
+            console.error("andy n'est pas si fort",error.message);
+            // console.log("andy n'est pas si fort",error.message);
+            navigate('/');
         }
     }
     
@@ -40,7 +39,7 @@ export default function Connection({inscription}) {
         <div className='connection__header'>
             <h1>Connection</h1>
         </div>
-        <form className='connection__body' onSubmit={connection}>
+        <form className='connection__body' onSubmit={connection} >
             <div className="div__input">
                 <Input type="text" placeholder="mail" id='mail' value={mail} onChange={handleChange}/>
                 <Input type="password" placeholder="password" id='password' value={password} onChange={handleChange}/>
