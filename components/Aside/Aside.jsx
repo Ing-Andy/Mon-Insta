@@ -11,46 +11,52 @@ export default function Aside() {
         <div className='Aside' >
             <div className='AsideHeader'>
                 <table>
-                    <tr className='tr' >
-                        <td className='td'><Instagram /></td>
-                        <td className='td1'>{isHover && 'Instagram'}</td>
-                    </tr>
+                    <tbody>
+                        <tr className='tr' >
+                            <td className='td'><Instagram /></td>
+                            <td className='td1'>{isHover && 'Instagram'}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div className="AsideNav">
                <table>
-                <tr>
-                    <td className='td'><Home /></td>
-                    <td className='td1'><NavLink to='recherche'>{isHover && 'Accueil'}</NavLink></td>
-                </tr>
-                <tr>
-                    <td className='td'><Search /></td>
-                    <td className='td1'><NavLink to='search'>{isHover && 'recherche'}</NavLink></td>
-                </tr>
-                <tr>
-                    <td className='td'><MapPin /></td>
-                    <td className='td1'><NavLink to='localisation'>{isHover && 'Accueil'}</NavLink></td>
-                </tr>
-                <tr>
-                    <td className='td'><Home /></td>
-                    <td className='td1'><NavLink to='voyons'>{isHover && 'Accueil'}</NavLink></td>
-                </tr>
-                <tr>
-                    <td className='td'><Home /></td>
-                    <td className='td1'>{isHover && 'Accueil'}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td className='td'><Home /></td>
+                        <td className='td1'><NavLink to='recherche'>{isHover && 'Accueil'}</NavLink></td>
+                    </tr>
+                    <tr>
+                        <td className='td'><Search /></td>
+                        <td className='td1'><NavLink to='search'>{isHover && 'recherche'}</NavLink></td>
+                    </tr>
+                    <tr>
+                        <td className='td'><MapPin /></td>
+                        <td className='td1'><NavLink to='localisation'>{isHover && 'Accueil'}</NavLink></td>
+                    </tr>
+                    <tr>
+                        <td className='td'><Home /></td>
+                        <td className='td1'><NavLink to='voyons'>{isHover && 'Accueil'}</NavLink></td>
+                    </tr>
+                    <tr>
+                        <td className='td'><Home /></td>
+                        <td className='td1'>{isHover && 'Accueil'}</td>
+                    </tr>
+                </tbody>
                </table>
             </div>
             <div className='asideEnd'>
                 <table>
-                    <tr>
-                        <td className='td'><Settings/></td>
-                        <td className='td1'>{isHover && 'parametre'}</td>
-                    </tr>
-                    <tr>
-                        <td className='td'><div className="profil"></div></td>
-                        <td className='td1'><NavLink to='profil'>{isHover && 'profile'}</NavLink></td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td className='td'><Settings/></td>
+                            <td className='td1'>{isHover && 'parametre'}</td>
+                        </tr>
+                        <tr>
+                            <td className='td'><div className="profil"></div></td>
+                            <td className='td1'><NavLink to='profil'>{isHover && 'profile'}</NavLink></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

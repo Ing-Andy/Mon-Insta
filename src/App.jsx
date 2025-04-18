@@ -16,7 +16,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Log />} />
         <Route element={<Protected />}>
-        <Route path='/' element={<Main />}>
+        <Route path='/insta' element={<Main />}>
           <Route path='acceuil' element={<Acceuil />} />
           <Route path='comment' element={<PostComment />} />
           <Route path='profile' element={<UserProfile/>} />

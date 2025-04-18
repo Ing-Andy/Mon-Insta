@@ -25,7 +25,7 @@ export default function Connection({inscription}) {
         e.preventDefault();
         try{
             await login(mail,password);
-            navigate('/acceuil');
+            navigate('/insta/acceuil');
         }
         catch(error){
             console.error("andy n'est pas si fort",error.message);

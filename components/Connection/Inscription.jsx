@@ -34,7 +34,7 @@ export default function Inscription({connection}) {
 
         try{
             await register(Email,Password,Name,Surname,Tel)
-            navigate('/acceuil')
+            navigate('/insta/acceuil')
         }
         catch(error){
             console.error("andy n'est pas si fort car:", error.message);
