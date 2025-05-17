@@ -10,17 +10,17 @@ import Protected from '../Api/Protected'
 
 
 export default function App() {
-  // const Connection = () => {}
+  
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Log />} />
         <Route element={<Protected />}>
-        <Route path='/insta' element={<Main />}>
-          <Route path='acceuil' element={<Acceuil />} />
-          <Route path='comment' element={<PostComment />} />
-          <Route path='profile' element={<UserProfile/>} />
-        </Route>
+          <Route path='/insta/' element={<Main />}>
+            <Route path='acceuil' element={<Acceuil />} />
+            {/* <Route path='comment' element={<PostComment />} /> */}
+            <Route path='profile' element={<UserProfile/>} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

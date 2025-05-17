@@ -1,5 +1,5 @@
 import { Forward, Smile } from 'lucide-react'
-import Profile from '../../profile/Profile'
+import Profile from '../../profile/Profile.jsx'
 import './PostComment.css'
 import React, { useState } from 'react'
 
@@ -14,20 +14,20 @@ export default function PostComment() {
             </div>
             <div className="PostCommentComment">
                 <div className="PostCommentCommentProfil">
-                    <Profile />
+                    <Profile lien='/'/>
                 </div>
                 <div className="params">
                     <p>suggetion d'ami</p>
                     <hr width='80%'/>
                 </div>
                 <ul className='PostCommentCommentListe'>
-                    <li><Profile /></li>
-                    <li><Profile /></li>
-                    <li><Profile /></li>
-                    <li><Profile /></li>
-                    <li><Profile /></li>
-                    <li><Profile /></li>
-                    <li><Profile /></li>
+                    <li><Profile lien='/'/></li>
+                    <li><Profile lien='/'/></li>
+                    <li><Profile lien='/'/></li>
+                    <li><Profile lien='/'/></li>
+                    <li><Profile lien='/'/></li>
+                    <li><Profile lien='/'/></li>
+                    <li><Profile lien='/'/></li>
                 </ul>
                 <div className="PostCommentCommentYour">
                     <div> 

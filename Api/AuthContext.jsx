@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth, db } from "./Firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "./Firebase";
 
 const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
             surname:surname,
             tel:tel,
             email:email,
+            post:[],
             like:[],
             comment:[],
             createAt: Date.now(),

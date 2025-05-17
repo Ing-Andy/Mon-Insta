@@ -2,7 +2,7 @@ import './PostScroll.css'
 import Input from '../../Input/Input'
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Profile from '../../profile/Profile'
+import Profile from '../../profile/Profile.jsx'
 import { useNavigate } from 'react-router-dom'
 import { Forward, Heart, List, MessageCircle, Plane, Smile } from 'lucide-react'
 

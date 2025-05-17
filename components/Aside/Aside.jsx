@@ -54,7 +54,7 @@ export default function Aside() {
                         </tr>
                         <tr>
                             <td className='td'><div className="profil"></div></td>
-                            <td className='td1'><NavLink to='profil'>{isHover && 'profile'}</NavLink></td>
+                            <td className='td1'><NavLink to='profile'>{isHover && 'profile'}</NavLink></td>
                         </tr>
                     </tbody>
                 </table>

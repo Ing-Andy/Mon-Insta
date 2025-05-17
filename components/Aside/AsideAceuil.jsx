@@ -1,6 +1,6 @@
 import React from 'react'
 import './AsideAceuil.css'
-import Profile from '../profile/Profile'
+import Profile from '../profile/Profile.jsx'
 import { NavLink } from 'react-router-dom'
 
 export default function AsideAceuil() {
