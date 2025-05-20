@@ -1,5 +1,21 @@
 @import "tailwindcss";
-:root {
+body {
+  background-color: black;
+  color: white;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;
+}
+.bacdrop{
+  backdrop-filter: blur(1px);
+}
+.scollbar-none {
+  scrollbar-width: none;
+}
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -66,4 +82,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

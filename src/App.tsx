@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import Home from './pages/Home'
+import Profile from './pages/Profile'
+import SideBar from './components/SideBar'
+import SideBarHome from './components/SideBarHome'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Login from './pages/Login'
+import Recherche from './pages/Recherche'
+// import ProtectedRoute from './components/ProtectedRoute'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/IG/*' element={(
+          // <ProtectedRoute>
+            <div className='flex w-full h-screen overflow-hidden'>
+              <SideBar />
+              <Routes>
+                <Route path='acceuil' element={<Home />} />
+                <Route path='recherche' element={<Recherche />} />
+              </Routes>
+            </div>
+          // </ProtectedRoute>
+        )} />
+        <Route path='/profil' element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App
