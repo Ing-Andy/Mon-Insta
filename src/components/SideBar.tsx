@@ -1,46 +1,45 @@
-import React, { useState } from 'react'
+import { Compass, Film, Heart, Home, Instagram, List, MessageCircleCode, Plus, Search } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function SideBar() {
-    const [ isHover,setIsHover ] = useState<boolean>(false);
-    const ChangeHover = ({e}:{e:HTMLDivElement}) => {
-        setIsHover(!isHover);
-    }
+    const navigate = useNavigate();
   return (
-    <div className='w-[5%] bg-[#333] h-screen duration-500 hover:w-[15%] text-gray-300 shadow-lg flex flex-col justify-between  overflow-hidden group' onMouseEnter={ChangeHover} onMouseOut={ChangeHover}>
-        <div className="flex">
-            <p>{isHover == false ? "":"Instagram"}</p>
+    <div className='w-11 hover:w-[10%] group bg-[#333] h-screen duration-500 rounded-none text-gray-300 shadow-lg flex justify-between fixed  shadow-gray-300 overflow-hidden group'>
+        <div className=" flex flex-col justify-between py-2 items-center h-screen  w-10 min-w-10 max-w-10 ">
+            <p><Instagram  size={35}/></p>
+            <div className="flex flex-col gap-4">
+                <span><Home size={30}/></span>
+                <span><Search size={30}/></span>
+                <span><Compass size={30}/></span>
+                <span><Film size={30}/></span>
+                <span><MessageCircleCode size={30}/></span>
+                <span><Heart size={30}/></span>
+                <span><Plus color='white' size={30}/></span>
+                <div className="w-8 h-8 bg-white rounded-full flex">
+                    {/* <Image
+                        alt='image'
+                        width={24}
+                        heigth={24} 
+                        src='https://images.unsplash.com/photo-1677631231231-123123123123?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGltYWdlfGVufDB8fHx8MTY4MjQxNTY5Ng&ixlib=rb-4.0.3&q=80&w=400'
+                    /> */}
+                </div>
+                <span><List size={30}/></span>
+            </div>
         </div>
-        <div className="flex flex-col h-50 border-2 justify-between">
-            <p className={`flex justify-${"between"} items-center gap-2`}>
-                <span className='w-12 min-w-12 max-w-12 text-center border-2'>icone</span>
-                <span className='text-black group-hover:text-gray-300 border-2 w-full'>{"Acceuil"}</span>
-            </p>
-            <p className={`flex justify-${"between"} items-center gap-2`}>
-                <span className='w-12 min-w-12 max-w-12 text-center border-2'>icone</span>
-                <span className='text-black group-hover:text-gray-300 border-2 w-full'>{"Recherche"}</span>
-            </p>
-            <p className={`flex justify-${"between"} items-center gap-2`}>
-                <span className='w-12 min-w-12 max-w-12 text-center border-2'>icone</span>
-                <span className='text-black group-hover:text-gray-300 border-2 w-full'>{"Abonne"}</span>
-            </p>
-            <p className={`flex justify-${"between"} items-center gap-2`}>
-                <span className='w-12 min-w-12 max-w-12 text-center border-2'>icone</span>
-                <span className='text-black group-hover:text-gray-300 border-2 w-full'>{"Ami"}</span>
-            </p>
-            <p className={`flex justify-${"between"} items-center gap-2`}>
-                <span className='w-12 min-w-12 max-w-12 text-center border-2'>icone</span>
-                <span className='text-black group-hover:text-gray-300 border-2 w-full'>{"communaute"}</span>
-            </p>
-        </div>
-        <div className="flex flex-col">
-            <p className={`flex justify-${isHover == false ? "center": "between"} items-center mb-4`}>
-                <span className='w-12 min-w-12 max-w-12 text-center border-2'>icone</span>
-                <span>{isHover == false ? "":"communaute"}</span>
-            </p>
-            <p className={`flex justify-${isHover == false ? "center": "between"} items-center mb-4`}>
-                <span className='w-12 min-w-12 max-w-12 h-12 rounded-full bg-white'>icone</span>
-                <span>{isHover == false ? "":"communaute"}</span>
-            </p>
+        <div className="flex flex-col justify-between py-2 w-[calc(100%-40px)] ">
+            <p className='group-hover:opacity-100 duration-500 opacity-0 w-full pt-2'>Instagram</p>
+            <div className="flex flex-col gap-4 *:group-hover:opacity-100 *:duration-500 *:opacity-0 *:w-full *:capitalize *:h-7 *:mt-0.5">
+                <Link to='/acceuil'>Acceuil</Link>
+                <Link to='/recherche'>recherhe</Link>
+                <Link to='/'>boussolle</Link>
+                <Link to='/'>movie</Link>
+                <Link to='/'>commentaire</Link>
+                <Link to='/'>like</Link>
+                <Link to='/'>plus</Link>
+                <Link to='/profil'>pofile</Link>
+                <span>menu</span>
+            </div>
+
         </div>
     </div>
   )

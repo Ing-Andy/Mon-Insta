@@ -40,7 +40,7 @@ export default function Login() {
       });
 
       if (signUpError) {
-        console.error('Erreur lors de l\'inscription :', signUpError.message);
+        console.error("Erreur lors de l'inscription :", signUpError.message);
         return;
       }
 
@@ -50,18 +50,18 @@ export default function Login() {
         return;
       }
 
-      const { error: dbError } = await supabase.from('users').insert([
+      let { data: users, error } = await supabase.from('users').insert([
         {
-          id: user.id,
-          name: name,
-          surname: surName,
-          posts: [],
-          likes: [],
-        },
-      ]);
+          id: signUpData.user?.id,
+          name:name,
+          surname:surName,
+          email:mail,
+        }
+      ]).select()
+      
 
-      if (dbError) {
-        console.error('Erreur lors de l\'insertion dans la base :', dbError.message);
+      if (error) {
+        console.error("Erreur lors de l'insertion dans la base :", error.message);
         return;
       }
 

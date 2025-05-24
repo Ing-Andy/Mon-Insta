@@ -6,6 +6,7 @@ import SideBarHome from './components/SideBarHome'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Recherche from './pages/Recherche'
+import CreatePost from './pages/CreatePost'
 // import ProtectedRoute from './components/ProtectedRoute'
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           // </ProtectedRoute>
         )} />
         <Route path='/profil' element={<Profile />} />
+        <Route path='/createPost' element={<CreatePost />} />
       </Routes>
     </BrowserRouter>
   )

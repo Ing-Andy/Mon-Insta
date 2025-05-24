@@ -1,93 +1,74 @@
 import type { Session, User } from '@supabase/supabase-js'
-import React, { Children, createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, use, useContext, useEffect, useState } from 'react'
 import { supabase } from './supabaseClient';
 
 type contextType = {
     user: User | null;
-    session: Session | null;
+    session: Session | any;
     loading: boolean;
+    userData: any[] | null;
+    posts: null | any[];
+    likes: null | any[];
 }
-const userContext = createContext<contextType>({
+const userContextType = createContext<contextType>({
     user: null,
     session: null,
-    loading:false,
-});
-
-export const useUser = () => useContext(userContext);
+    loading: false,
+    userData: null,
+    posts: null,
+    likes:null,
+})
+export const useUser = () => useContext(userContextType);
 
 export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [ user, setUser ] = useState< User | null >(null);
-    const [ session, setSession ] = useState< Session | null >(null);
-    const [ loading, setLoading ] = useState<boolean>(true);
-    
-    useEffect(()=>{
-        supabase.auth.getSession().then(({ data: { session } }) => {
+    const [ user, setUser ] = useState<User | null>(null);
+    const [ session, setSession ] = useState<Session | null>(null);
+    const [ loading, setLoading ] = useState<boolean>(false);
+    const [ userData, setUserData ] = useState<any[] | null>([]);
+    const [ posts, setPosts ] = useState<any[] | null>(null);
+    const [ likes, setLikes ] = useState<any[] | null>(null);
+
+    useEffect(() => {
+    const myContext = async () => {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) {
+            console.error('Error fetching session:', error);
+        } else {
             setSession(session);
             setUser(session?.user ?? null);
-            setLoading(!loading);
-        })
-        const { data: { subscription}, } = supabase.auth.onAuthStateChange((_event,session) => {
+            // console.log(session?.user);   
+        }
+        const { data, error: userError } = await supabase
+            .from('users')
+            .select('*')
+            .eq('id', session?.user.id)
+            .single();
+        if (userError) {
+            console.error('Error fetching user data:', userError);
+        } else {
+            setUserData(data);
+            // console.log(data);
+        }
+        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
             setSession(session);
             setUser(session?.user ?? null);
-            setLoading(!loading);
-        })
-        return () => { subscription.unsubscribe()};
-    },[])
+            console.log('Auth state changed:', event);
+        });
+        const { data: postsData, error: postsError } = await supabase.from('posts').select('*').eq('userId', session?.user.id);
+        if (postsError) {
+            console.error('Error fetching posts:', postsError);
+        } else {
+            setPosts(postsData);
+            console.log(postsData);
+        }
+    };
+    myContext();
+}, []);
     return (
-        <userContext.Provider value={{ user, session, loading }}>
+        <userContextType.Provider value={{ user, session, loading, userData , likes, posts }}>
             {children}
-        </userContext.Provider>
+        </userContextType.Provider>
     )
 }
 
-// import React, { createContext, useContext, useEffect, useState } from 'react';
-// import type { Session, User } from '@supabase/supabase-js';
-// import { supabase } from '../Api/supabaseClient'; // adapte le chemin
 
-// // Définir le type du contexte
-// type UserContextType = {
-//   user: User | null;
-//   session: Session | null;
-// };
-
-// // Créer le contexte
-// const UserContext = createContext<UserContextType>({
-//   user: null,
-//   session: null,
-// });
-
-// // Hook pour utiliser le contexte
-// export const useUser = () => useContext(UserContext);
-
-// // Composant Provider
-// export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
-//   const [user, setUser] = useState<User | null>(null);
-//   const [session, setSession] = useState<Session | null>(null);
-
-//   useEffect(() => {
-//     // Obtenir la session actuelle
-//     supabase.auth.getSession().then(({ data: { session } }) => {
-//       setSession(session);
-//       setUser(session?.user ?? null);
-//     });
-
-//     // Ecouter les changements de session (connexion / déconnexion)
-//     const {
-//       data: { subscription },
-//     } = supabase.auth.onAuthStateChange((_event, session) => {
-//       setSession(session);
-//       setUser(session?.user ?? null);
-//     });
-
-//     // Nettoyer l'écouteur
-//     return () => {
-//       subscription.unsubscribe();
-//     };
-//   }, []);
-
-//   return (
-//     <UserContext.Provider value={{ user, session }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
