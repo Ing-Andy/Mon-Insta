@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; // useId n'est pas utilisé ici, vous pouvez le retirer
+import React, { use, useEffect, useState } from 'react'; // useId n'est pas utilisé ici, vous pouvez le retirer
 import Statut from '../components/Statut';
 import Post from '../components/Post';
 import SideBarHome from '../components/SideBarHome';
@@ -7,7 +7,9 @@ import { supabase } from '../Api/supabaseClient';
 
 export default function Home() {
     const { userData } = useUser(); // Récupère les données de l'utilisateur connecté
-    const [lesPosts, setLesPosts] = useState<any[]>([]);
+    const [ lesPosts, setLesPosts] = useState<any[]>([]);
+    const [ listeUsers, setListeUsers ] = useState<any[]>([]); // Si vous avez besoin de la liste des utilisateurs
+
 
     useEffect(() => {
         const takePosts = async () => {
@@ -30,8 +32,9 @@ export default function Home() {
                 console.error('Error fetching posts:', postsError);
             } else {
                 setLesPosts(postsData);
-                console.log('Posts des autres utilisateurs récupérés :', postsData);
+                // console.log('Posts des autres utilisateurs récupérés :', postsData);
             }
+            
         };
 
         takePosts();
@@ -51,7 +54,7 @@ export default function Home() {
                     {
                         lesPosts?.map((post, index) => (
                             // Assurez-vous que les noms des propriétés (description, ImageUrl) correspondent à votre BDD
-                            <Post key={index} description={post.description} image={post.ImageUrl} ismine='no' />
+                            <Post key={index} description={post.description} image={post.ImageUrl} ismine='no' id={post.userId}/>
                         ))
                     }
                 </section>
