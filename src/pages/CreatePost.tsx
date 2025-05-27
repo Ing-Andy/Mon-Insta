@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { supabase } from '../Api/supabaseClient';
 // import Post from '../functions/post'; // S'il s'agit d'une fonction que vous importez
 import { useUser } from '../Api/Context';
+import { useNavigate } from 'react-router-dom';
 // import post from '../functions/post'; // S'il s'agit d'une fonction que vous importez
 
 export default function CreatePost() {
@@ -10,11 +11,9 @@ export default function CreatePost() {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>(''); // Renommé 'image' en 'imageUrl' pour la clarté
   const { userData } = useUser();
+  const navigate = useNavigate();
   const userId = userData?.id;
 
-  // L'utilisation de `useId` ici est un peu inhabituelle si c'est juste pour un ID visuel.
-  // Si c'est pour générer un ID unique pour le post, utilisez un UUID ou Date.now()
-  // comme dans votre code commenté. Pour l'instant, on le laisse.
   const myId = useId(); 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,10 +36,6 @@ export default function CreatePost() {
     let uploadedPublicUrl = ''; // Variable pour stocker l'URL publique après l'upload
 
     try {
-      // Générer un nom de fichier unique pour éviter les collisions
-      // C'est très important ! Ne pas utiliser `imageFile.name` directement pour l'upload
-      // car deux utilisateurs pourraient uploader des fichiers avec le même nom.
-      // Votre code commenté avait une bonne approche : `posts/${user.id}/${Date.now()}-${imageFile.name}`
       const fileExtension = imageFile.name.split('.').pop();
       const uniqueFileName = `${userId}/${Date.now()}-${Math.random().toString(36).substring(2, 15)}.${fileExtension}`; // Exemple plus robuste
 
@@ -92,20 +87,21 @@ export default function CreatePost() {
       // bien configurée comme JSONB dans Supabase.
 
       // Récupérer les posts existants de l'utilisateur
-      const { data: userDataFromDb, error: userDataError } = await supabase
-        .from('users')
-        .select('posts') // 'posts' doit être une colonne JSONB
-        .eq('id', userId)
-        .single();
+      const { data: userDataFromDb, error: userDataError } = await supabase.from('posts').insert([
+        {
+          description: description,
+          ImageUrl: uploadedPublicUrl,
+          userId: userId,
+        }
+      ])
 
-      if (userDataError && userDataError.code !== 'PGRST116') { // PGRST116 est 'aucune ligne trouvée'
+      if (userDataError) {
         console.error('Erreur récupération posts utilisateur:', userDataError.message);
         setLoading(false);
         return;
+      }else if(userDataFromDb) {
+        console.log('Posts récupérés avec succès:', userDataFromDb);
       }
-
-      const existingPosts = userDataFromDb?.posts || []; // Utilisez .posts car la colonne est appelée 'posts'
-
       // Créer un nouvel objet post
       const newPost = {
         id: Date.now(), // Ou un UUID, 'id' ici est l'ID de ce post spécifique, pas l'ID de l'utilisateur
@@ -114,26 +110,26 @@ export default function CreatePost() {
         created_at: new Date().toISOString(),
       };
 
-      const updatedPosts = [...existingPosts, newPost];
+      // const updatedPosts = [...existingPosts, newPost];
 
       // Mettre à jour l'utilisateur avec le nouveau tableau de posts
-      const { error: updateError } = await supabase
-        .from('users')
-        .update({ posts: updatedPosts })
-        .eq('id', userId);
+      // const { error: updateError } = await supabase
+      //   .from('users')
+      //   .update({ posts: updatedPosts })
+      //   .eq('id', userId);
 
-      if (updateError) {
-        console.error('Erreur mise à jour posts utilisateur:', updateError.message);
-        setLoading(false);
-        return;
-      }
+      // if (updateError) {
+      //   console.error('Erreur mise à jour posts utilisateur:', updateError.message);
+      //   setLoading(false);
+      //   return;
+      // }
 
       alert('Post créé avec succès !');
       setDescription('');
       setImageFile(null); // Réinitialiser le fichier
       setImageUrl(''); // Réinitialiser l'URL de l'image
       setLoading(false);
-
+      navigate('/profil'); // Rediriger vers la page d'accueil ou une autre page après la création du post
     } catch (error: any) { // Utilisez 'any' pour attraper tout type d'erreur
       console.error("Erreur générale lors de la soumission du post:", error.message);
       setLoading(false);

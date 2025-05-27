@@ -30,19 +30,14 @@ export const UserContextProvider = ({ children }: { children: React.ReactNode })
 
     useEffect(() => {
     const myContext = async () => {
-        const { data: { session }, error } = await supabase.auth.getSession();
+        const { data: { session } , error } = await supabase.auth.getSession();
         if (error) {
             console.error('Error fetching session:', error);
         } else {
             setSession(session);
-            setUser(session?.user ?? null);
-            // console.log(session?.user);   
+            setUser(session?.user ?? null); 
         }
-        const { data, error: userError } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', session?.user.id)
-            .single();
+        const { data, error: userError } = await supabase.from('users').select('*').eq('id', session?.user.id).single();
         if (userError) {
             console.error('Error fetching user data:', userError);
         } else {

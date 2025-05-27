@@ -23,9 +23,9 @@ export default function post({ image, description,  userId }: Props) {
         ]);
 
         if (error) {
-        console.error('Erreur lors de l\'insertion : ', error);
+          console.error("Erreur lors de l'insertion : ", error);
         } else {
-        console.log('Insertion réussie : ', data);
+          console.log('Insertion réussie : ', data);
         }
     };
 
