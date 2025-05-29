@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Recherche from './pages/Recherche'
 import CreatePost from './pages/CreatePost'
+import CreateProfie from './pages/CreateProfie'
 // import ProtectedRoute from './components/ProtectedRoute'
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           // </ProtectedRoute>
         )} />
         <Route path='/profil' element={<Profile />} />
+        <Route path='/createProfil' element={<CreateProfie />} />
         <Route path='/createPost' element={<CreatePost />} />
       </Routes>
     </BrowserRouter>

@@ -54,7 +54,7 @@ export const UserContextProvider = ({ children }: { children: React.ReactNode })
             console.error('Error fetching posts:', postsError);
         } else {
             setPosts(postsData);
-            // console.log(postsData);
+            console.log(postsData);
         }
     };
     myContext();

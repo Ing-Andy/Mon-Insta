@@ -1,5 +1,5 @@
 import { useUser } from '../Api/Context';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Post from '../components/Post';
 import { LucideChevronsLeft } from 'lucide-react';
 
@@ -15,7 +15,7 @@ export default function Profile() {
         <div className="w-full h-full flex flex-col items-center pt-4 overflow-scroll scollbar-none">
             <div className="w-full flex justify-around pb-2">
                 <div className="flex flex-col items-center gap-4">
-                    <div className="flex bg-gray-400 w-60 h-60 rounded-full items-center justify-center text-black">   </div>
+                    <NavLink to='/createProfil'><div className="flex bg-gray-400 w-60 h-60 rounded-full items-center justify-center text-black"></div></NavLink>
                     <div className="flex bg-gray-400 w-20 h-20 rounded-full items-center justify-center text-black cursor-pointer" onClick={() => navigate('/createPost')}>+</div>
                 </div>
                 <div className="flex flex-col justify-center w-[60%] h-50">

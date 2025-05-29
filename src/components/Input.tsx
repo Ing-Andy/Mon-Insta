@@ -1,3 +1,4 @@
+import { PlayIcon, Smile } from 'lucide-react'
 import React, { useState, type ReactElement } from 'react'
 
 export default function Input() {
@@ -7,7 +8,7 @@ export default function Input() {
     }
   return (
     <form className='h-10 flex items-center'>
-        <p>sticker</p>
+        <p><Smile  /></p>
         <input 
             type="text"
             value={input}
@@ -15,7 +16,7 @@ export default function Input() {
             placeholder='votre commentaie'
             className='w-full h-full outline-none pl-2 bg-transparent text-gray-300'
         />
-        <button className='border-none bg-none'>submit</button>
+        <button className='border-none bg-none'><PlayIcon /> </button>
     </form>
   )
 }

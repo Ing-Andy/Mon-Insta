@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MiniProfil from './MiniProfil';
 import Input from './Input';
 import { supabase } from '../Api/supabaseClient';
+import { Forward, Heart, MessageCircle } from 'lucide-react';
 
 type PostProps = {
     image?: string;
@@ -13,6 +14,7 @@ type PostProps = {
 export default function Post({ image, description, ismine, id }: PostProps) {
     const [nom, setNom] = useState<string>('');
     const [prenom, setPrenom] = useState<string>('');
+    const [ click, setClick ] = useState<boolean>(false)
 
     useEffect(() => {
         const takeData = async () => {
@@ -28,17 +30,19 @@ export default function Post({ image, description, ismine, id }: PostProps) {
             if (error) {
                 console.error('Error fetching user data for ID:', id, error); // Affichez l'ID en cas d'erreur
             } else {
-                console.log('User data fetched for ID:', id, data);
+                // console.log('User data fetched for ID:', id, data);
                 setNom(data.name);
                 setPrenom(data.surname);
             }
         };
         takeData();
     }, [id]); // <-- CORRECTION ICI : Ajoutez 'id' au tableau de dépendances !
+    
+    const [ open, setOpen ] = useState<boolean>(false);
 
-    // Ces console.log s'exécuteront à chaque rendu, y compris avant que les données ne soient définies
-    // console.log('Nom (dans le rendu):', nom);
-    // console.log('Prenom (dans le rendu):', prenom);
+    const modal = () => {
+        setOpen(!open);
+    }
 
     return (
         <div className='flex flex-col w-100 border-[1px] border-gray-500 py-2 my-4'>
@@ -54,9 +58,9 @@ export default function Post({ image, description, ismine, id }: PostProps) {
             </section>
             <footer className='w-full h-15 px-1'>
                 <hr className='text-gray-500' />
-                <div className="flex justify-between">
-                    <div className="flex">heart comment</div>
-                    <div className="">partage</div>
+                <div className="flex justify-between gap-2">
+                    <div className="flex gap-2"><Heart onClick={()=> setClick(!click)} className={click ?`text-red-500`: `text-white`} /> <MessageCircle onClick={modal} /> </div>
+                    <div className=""><Forward /></div>
                 </div>
                 <Input />
             </footer>

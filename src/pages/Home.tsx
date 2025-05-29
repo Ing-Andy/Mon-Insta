@@ -8,8 +8,7 @@ import { supabase } from '../Api/supabaseClient';
 export default function Home() {
     const { userData } = useUser(); // Récupère les données de l'utilisateur connecté
     const [ lesPosts, setLesPosts] = useState<any[]>([]);
-    const [ listeUsers, setListeUsers ] = useState<any[]>([]); // Si vous avez besoin de la liste des utilisateurs
-
+    
 
     useEffect(() => {
         const takePosts = async () => {

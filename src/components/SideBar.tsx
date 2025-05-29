@@ -1,8 +1,13 @@
 import { Compass, Film, Heart, Home, Instagram, List, MessageCircleCode, Plus, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '../Api/supabaseClient';
 
 export default function SideBar() {
     const navigate = useNavigate();
+    const handleSignOut = () => {
+        supabase.auth.signOut()
+        navigate('/')
+    }
   return (
     <div className='w-11 hover:w-[10%] group bg-[#333] h-screen duration-500 rounded-none text-gray-300 shadow-lg flex justify-between fixed  shadow-gray-300 overflow-hidden group'>
         <div className=" flex flex-col justify-between py-2 items-center h-screen  w-10 min-w-10 max-w-10 ">
@@ -37,7 +42,7 @@ export default function SideBar() {
                 <Link to='/'>like</Link>
                 <Link to='/'>plus</Link>
                 <Link to='/profil'>pofile</Link>
-                <span>menu</span>
+                <span onClick={handleSignOut } className='cursor-pointer'>Sign Out</span>
             </div>
 
         </div>
