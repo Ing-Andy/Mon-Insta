@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useState } from 'react';
 import { supabase } from '../Api/supabaseClient';
 // import Post from '../functions/post'; // S'il s'agit d'une fonction que vous importez
 import { useUser } from '../Api/Context';
@@ -12,11 +12,12 @@ export default function CreatePost() {
   const [imageUrl, setImageUrl] = useState<string>(''); // Renommé 'image' en 'imageUrl' pour la clarté
   const { userData } = useUser();
   const navigate = useNavigate();
-  const userId = userData?.id;
+  const userId = userData?.[0]?.id;
 
-  const myId = useId(); 
+  // const myId = useId(); 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(imageUrl);
     if (e.target.files && e.target.files.length > 0) {
       setImageFile(e.target.files[0]);
     }
@@ -103,12 +104,12 @@ export default function CreatePost() {
         console.log('Posts récupérés avec succès:', userDataFromDb);
       }
       // Créer un nouvel objet post
-      const newPost = {
-        id: Date.now(), // Ou un UUID, 'id' ici est l'ID de ce post spécifique, pas l'ID de l'utilisateur
-        description: description,
-        image_url: uploadedPublicUrl, // Utilisez l'URL publique
-        created_at: new Date().toISOString(),
-      };
+      // const newPost = {
+      //   id: Date.now(), // Ou un UUID, 'id' ici est l'ID de ce post spécifique, pas l'ID de l'utilisateur
+      //   description: description,
+      //   image_url: uploadedPublicUrl, // Utilisez l'URL publique
+      //   created_at: new Date().toISOString(),
+      // };
 
       // const updatedPosts = [...existingPosts, newPost];
 
@@ -137,7 +138,7 @@ export default function CreatePost() {
   };
 
   const [athere, setAthere] = useState(false); // Variable inutilisée ici, mais gardée pour ne pas casser le code
-
+  setAthere(false);
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-md mx-auto ">
       <textarea

@@ -1,8 +1,6 @@
-import React from 'react'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import SideBar from './components/SideBar'
-import SideBarHome from './components/SideBarHome'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Recherche from './pages/Recherche'

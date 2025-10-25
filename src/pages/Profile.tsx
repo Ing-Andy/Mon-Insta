@@ -20,7 +20,7 @@ export default function Profile() {
                 </div>
                 <div className="flex flex-col justify-center w-[60%] h-50">
                     <div className="flex justify-around items-center w-[60%]">
-                        <p className="text-center text-gray-400 font-bold font-Poppins">{userData?.name} {userData?.surname}</p>
+                        <p className="text-center text-gray-400 font-bold font-Poppins">{userData?.[0]?.name} {userData?.[0]?.surname}</p>
                         <button className='border-none bg-[#333] px-2 py-1 rounded-md text-gray-300'>mes follow</button>
                         <button className='border-none bg-[#333] px-2 py-1 rounded-md text-gray-300'>mes abonne</button>
                     </div>

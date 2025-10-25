@@ -1,17 +1,17 @@
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
-import { useUser } from "../Api/Context";
+// import { useUser } from "../Api/Context";
 
-type Props = {
-    id ?: string;
-}
+// type Props = {
+//     id ?: string;
+// }
 
-export default function Comment({ id }: Props) {
+export default function Comment() {
     const [ open, setOpen ] = useState<boolean>(false);
     const handleOpen = () => {
         setOpen(!open);
     }
-    const { posts } = useUser();
+    // const { posts } = useUser();
     // const 
   return (
     <div className="flex">

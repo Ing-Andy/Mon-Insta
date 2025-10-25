@@ -50,7 +50,7 @@ export default function Login() {
         return;
       }
 
-      let { data: users, error } = await supabase.from('users').insert([
+      let { data: error } = await supabase.from('users').insert([
         {
           id: signUpData.user?.id,
           name:name,
@@ -61,7 +61,7 @@ export default function Login() {
       
 
       if (error) {
-        console.error("Erreur lors de l'insertion dans la base :", error.message);
+        console.error("Erreur lors de l'insertion dans la base :", error);
         return;
       }
 

@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'; // useId n'est pas utilisé ici, vous pouvez le retirer
+import { useEffect, useState } from 'react'; // useId n'est pas utilisé ici, vous pouvez le retirer
 import Statut from '../components/Statut';
 import Post from '../components/Post';
 import SideBarHome from '../components/SideBarHome';
@@ -13,13 +13,13 @@ export default function Home() {
     useEffect(() => {
         const takePosts = async () => {
             // Assurez-vous que l'ID de l'utilisateur connecté est disponible
-            if (!userData || !userData.id) {
+            if (!userData || !userData?.[0]?.id) {
                 console.warn('Aucun utilisateur connecté ou ID utilisateur manquant. Ne peut pas filtrer les posts.');
                 setLesPosts([]); // Réinitialise les posts si personne n'est connecté
                 return; // Sort de la fonction
             }
 
-            const currentUserId = userData.id; // L'ID de l'utilisateur actuellement connecté
+            const currentUserId = userData?.[0]?.id; // L'ID de l'utilisateur actuellement connecté
 
             const { data: postsData, error: postsError } = await supabase
                 .from('posts')

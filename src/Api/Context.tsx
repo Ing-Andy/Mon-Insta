@@ -1,5 +1,5 @@
 import type { Session, User } from '@supabase/supabase-js'
-import React, { createContext, use, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from './supabaseClient';
 
 type contextType = {
@@ -29,6 +29,8 @@ export const UserContextProvider = ({ children }: { children: React.ReactNode })
     const [ likes, setLikes ] = useState<any[] | null>(null);
 
     useEffect(() => {
+        setLoading(false)
+        setLikes(null);
     const myContext = async () => {
         const { data: { session } , error } = await supabase.auth.getSession();
         if (error) {
@@ -48,6 +50,7 @@ export const UserContextProvider = ({ children }: { children: React.ReactNode })
             setSession(session);
             setUser(session?.user ?? null);
             console.log('Auth state changed:', event);
+            console.log('Auth state changed:', authListener);
         });
         const { data: postsData, error: postsError } = await supabase.from('posts').select('*').eq('userId', session?.user.id);
         if (postsError) {

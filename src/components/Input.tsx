@@ -1,5 +1,5 @@
 import { PlayIcon, Smile } from 'lucide-react'
-import React, { useState, type ReactElement } from 'react'
+import { useState } from 'react'
 
 export default function Input() {
     const [ input,setInput ] = useState<string>('')

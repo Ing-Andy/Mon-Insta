@@ -29,7 +29,7 @@ export default function CreateProfile() { // Corrected typo: CreateProfile
             setLoading(false);
             return;
         }
-        if (!userData || !userData.id) {
+        if (!userData || !userData?.[0]?.id) {
             console.error("Utilisateur non connecté ou ID utilisateur manquant. Impossible d'uploader l'avatar.");
             setLoading(false);
             return;
@@ -39,7 +39,7 @@ export default function CreateProfile() { // Corrected typo: CreateProfile
         try {
             const fileExtension = imageFile.name.split('.').pop();
             // Use user ID in the path for better organization and RLS enforcement
-            const uniqueFileName = `avatars/${userData.id}/${Date.now()}.${fileExtension}`;
+            const uniqueFileName = `avatars/${userData?.[0]?.id}/${Date.now()}.${fileExtension}`;
 
             // 2. Upload the image to Supabase Storage
             const { data: uploadData, error: uploadError } = await supabase.storage
@@ -72,7 +72,7 @@ export default function CreateProfile() { // Corrected typo: CreateProfile
             const { error: updateError } = await supabase
                 .from('users')
                 .update({ avatar_url: uploadedPublicUrl }) // Update 'avatar_url' column
-                .eq('id', userData.id); // For the current user
+                .eq('id', userData?.[0]?.id); // For the current user
 
             if (updateError) {
                 console.error("Erreur lors de la mise à jour du profil utilisateur:", updateError.message);

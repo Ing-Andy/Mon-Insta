@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MiniProfil from './MiniProfil';
 import { useUser } from '../Api/Context';
 import { supabase } from '../Api/supabaseClient';
@@ -10,13 +10,13 @@ export default function SideBarHome() {
 
     useEffect(() => {
         const fetchOtherUsers = async () => { // Renommé la fonction pour plus de clarté
-            if (!userData || !userData.id) {
+            if (!userData || !userData?.[0]?.id) {
                 console.warn('Aucun utilisateur connecté ou ID utilisateur manquant. Ne peut pas filtrer les suggestions.');
                 setLesAutresUtilisateurs([]); // Réinitialise si personne n'est connecté
                 return;
             }
 
-            const currentUserId = userData.id;
+            const currentUserId = userData?.[0]?.id;
 
             const { data: usersData, error: usersError } = await supabase
                 .from('users') // Toujours la table 'users'

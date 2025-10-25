@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MiniProfil from './MiniProfil';
 import Input from './Input';
 import { supabase } from '../Api/supabaseClient';
@@ -7,7 +7,7 @@ import { Forward, Heart, MessageCircle } from 'lucide-react';
 type PostProps = {
     image?: string;
     description?: string;
-    ismine?: string;
+    ismine?: boolean | string;
     id?: string; // C'est l'ID de l'utilisateur qui a fait le post, pas l'ID du post lui-même
 }
 
@@ -48,7 +48,7 @@ export default function Post({ image, description, ismine, id }: PostProps) {
         <div className='flex flex-col w-100 border-[1px] border-gray-500 py-2 my-4'>
             <header>
                 {/* Assurez-vous que MiniProfil prend bien 'nom' et 'prenom' comme props */}
-                <MiniProfil ismine={ismine} nom={nom} prenom={prenom} />
+                <MiniProfil ismine={ismine ? ismine : false} nom={nom} prenom={prenom} />
             </header>
             <section>
                 <div className="w-full h-80 bg-gray-400">

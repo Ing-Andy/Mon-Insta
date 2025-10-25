@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 // import { useUser } from "../Api/Context";
 import { supabase } from "../Api/supabaseClient";
 
